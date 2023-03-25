@@ -1,6 +1,6 @@
 {
   "name": "se-ts-userscript-utilities",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A collection of utilities to assist with SE UserScript construction.",
   "repository": {
     "type": "git",
