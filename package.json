@@ -1,0 +1,30 @@
+{
+  "name": "se-ts-userscript-utilities",
+  "version": "1.0.0",
+  "description": "A collection of utilities to assist with SE UserScript construction.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HenryEcker/SE-TS-UserScript-Utilities.git"
+  },
+  "author": "Henry Ecker",
+  "bugs": {
+    "url": "https://github.com/HenryEcker/SE-TS-UserScript-Utilities/issues"
+  },
+  "homepage": "https://github.com/HenryEcker/SE-TS-UserScript-Utilities",
+  "scripts": {
+    "bump-patch": "npm version patch",
+    "bump-minor": "npm version minor",
+    "bump-major": "npm version major"
+  },
+  "devDependencies": {
+    "@hotwired/stimulus": "^3.2.1",
+    "@types/jquery": "^3.5.16",
+    "@types/tampermonkey": "^4.0.10",
+    "@typescript-eslint/eslint-plugin": "^5.55.0",
+    "@typescript-eslint/parser": "^5.55.0",
+    "@userscripters/stackexchange-global-types": "^2.6.1",
+    "eslint": "^8.36.0",
+    "jquery": "^3.6.4",
+    "typescript": "^5.0.2"
+  }
+}
