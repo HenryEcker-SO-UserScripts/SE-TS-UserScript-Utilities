@@ -1,6 +1,6 @@
 {
   "name": "se-ts-userscript-utilities",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A collection of utilities to assist with SE UserScript construction.",
   "repository": {
     "type": "git",
@@ -11,6 +11,11 @@
     "url": "https://github.com/HenryEcker/SE-TS-UserScript-Utilities/issues"
   },
   "homepage": "https://github.com/HenryEcker/SE-TS-UserScript-Utilities",
+  "scripts": {
+    "bump-patch": "npm version patch",
+    "bump-minor": "npm version minor",
+    "bump-major": "npm version major"
+  },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.1",
     "@types/jquery": "^3.5.16",
