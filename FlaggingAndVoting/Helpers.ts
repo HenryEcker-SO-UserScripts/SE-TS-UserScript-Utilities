@@ -1,5 +1,5 @@
-import {IdType} from "../Utilities/Types";
-import {fetchPostFormData, fetchPostFormDataBodyJsonResponse} from "../Utilities/General";
+import {type IdType} from '../Utilities/Types';
+import {fetchPostFormData, fetchPostFormDataBodyJsonResponse} from '../Utilities/General';
 
 interface FlagResponse {
     FlagType: number;

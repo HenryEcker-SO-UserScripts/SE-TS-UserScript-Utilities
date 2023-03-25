@@ -1,5 +1,5 @@
-import {IdType} from "../Utilities/Types";
-import {castPostsVote} from "./Helpers";
+import {type IdType} from '../Utilities/Types';
+import {castPostsVote} from './Helpers';
 
 
 export function deletePost(postId: IdType) {

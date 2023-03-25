@@ -1,6 +1,6 @@
-import {IdType} from "../Utilities/Types";
-import {fetchPostFormDataBodyJsonResponse} from "../Utilities/General";
-import {flagPost} from "./Helpers";
+import {type IdType} from '../Utilities/Types';
+import {fetchPostFormDataBodyJsonResponse} from '../Utilities/General';
+import {flagPost} from './Helpers';
 
 
 export function reopenQuestion(postId: IdType) {
