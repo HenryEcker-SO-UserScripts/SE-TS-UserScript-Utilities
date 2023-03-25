@@ -1,5 +1,5 @@
-import {IdType} from "../Utilities/Types";
-import {fetchPostFormData} from "../Utilities/General";
+import {type IdType} from '../Utilities/Types';
+import {fetchPostFormData} from '../Utilities/General';
 
 // Currently relying on 200 status code since it sometimes returns an HTML response and sometimes JSON
 // Depending on if the CM escalate message was displayed or not.
