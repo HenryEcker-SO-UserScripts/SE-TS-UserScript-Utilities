@@ -10,6 +10,15 @@ export function castPostsVote(postId: IdType, voteType: IdType) {
     );
 }
 
+export function deletePost(postId: IdType) {
+    return castPostsVote(postId, 10);
+}
+
+export function undeletePost(postId: IdType) {
+    return castPostsVote(postId, 11);
+}
+
+
 export function reopenQuestion(postId: IdType) {
     return fetchPostFormDataBodyJsonResponse(
         `/flags/questions/${postId}/reopen/add`,
