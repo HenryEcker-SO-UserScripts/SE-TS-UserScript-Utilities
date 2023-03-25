@@ -19,8 +19,7 @@ export function reopenQuestion(postId: IdType) {
     );
 }
 
-
-interface FlagPlagiarismResponse {
+interface FlagResponse {
     FlagType: number;
     Message: string;
     Outcome: number;
@@ -28,16 +27,33 @@ interface FlagPlagiarismResponse {
     Success: boolean;
 }
 
-export function flagPlagiarizedContent(postId: IdType, originalSource: string, detailText: string) {
-    return fetchPostFormDataBodyJsonResponse<FlagPlagiarismResponse>(
-        `/flags/posts/${postId}/add/PlagiarizedContent`,
+type PostFlagType = 'PostSpam' | 'PostOffensive' | 'PlagiarizedContent';
+
+
+function flagPost(flagType: PostFlagType, postId: IdType, otherText: null | string, overrideWarning: boolean, extraInfo?: Record<string, unknown>) {
+    return fetchPostFormDataBodyJsonResponse<FlagResponse>(
+        `/flags/posts/${postId}/add/${flagType}`,
         {
             fkey: StackExchange.options.user.fkey,
-            otherText: detailText,
-            customData: JSON.stringify({plagiarizedSource: originalSource}),
-            overrideWarning: false
+            otherText: otherText,
+            overrideWarning: overrideWarning,
+            ...extraInfo
         }
     );
+}
+
+export function flagSpam(postId: IdType) {
+    return flagPost('PostSpam', postId, null, true);
+}
+
+export function flagRudeOrAbusive(postId: IdType) {
+    return flagPost('PostOffensive', postId, null, true);
+}
+
+export function flagPlagiarizedContent(postId: IdType, originalSource: string, detailText: string) {
+    return flagPost('PlagiarizedContent', postId, detailText, false, {
+        customData: JSON.stringify({plagiarizedSource: originalSource})
+    });
 }
 
 
@@ -54,5 +70,5 @@ export function deleteAsPlagiarism(postId: IdType) {
         {
             fkey: StackExchange.options.user.fkey
         }
-    )
+    );
 }

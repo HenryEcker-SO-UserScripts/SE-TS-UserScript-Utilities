@@ -12,4 +12,4 @@ import * as UserModActions from './Utilities/UserModActions';
 export default {
     UserScriptUtilities: {Chat, Comments, EditPosts, General, PostFlagsAndVotes, PostLocks, UserInfo, UserModActions},
     Formatters: {TextFormatting}
-}
+};
