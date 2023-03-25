@@ -1,5 +1,5 @@
-import {fetchPostFormData} from './General';
-import type {IdType} from './Types';
+import {fetchPostFormData} from '../Utilities/General';
+import type {IdType} from '../Utilities/Types';
 
 export function getUserPii(userId: IdType): Promise<{
     email: string;

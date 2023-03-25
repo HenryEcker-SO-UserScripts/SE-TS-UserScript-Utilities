@@ -1,5 +1,5 @@
-import {type IdType} from './Types';
-import {fetchPostFormData} from './General';
+import {type IdType} from '../Utilities/Types';
+import {fetchPostFormData} from '../Utilities/General';
 
 
 export function sendChatMessage(roomId: IdType, messageText: string, chatFkey: string) {
