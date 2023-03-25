@@ -1,5 +1,5 @@
-import {fetchPostFormDataBodyJsonResponse} from './General';
-import type {IdType} from './Types';
+import {fetchPostFormDataBodyJsonResponse} from '../Utilities/General';
+import type {IdType} from '../Utilities/Types';
 
 
 interface EditTagResponse {

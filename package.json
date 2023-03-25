@@ -10,7 +10,7 @@
   "files": [
     "Formatters/**",
     "Utilities/**",
-    "Utilities-Testing/**"
+    "Moderators-Testing/**"
   ],
   "type": "module",
   "author": "Henry Ecker",

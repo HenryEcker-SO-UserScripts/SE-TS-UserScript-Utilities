@@ -1,5 +1,5 @@
-import {type IdType} from './Types';
-import {fetchPostFormData, fetchPostFormDataBodyJsonResponse} from './General';
+import {type IdType} from '../Utilities/Types';
+import {fetchPostFormData, fetchPostFormDataBodyJsonResponse} from '../Utilities/General';
 
 export function addComment(postId: IdType, commentText: string) {
     return fetchPostFormData(
