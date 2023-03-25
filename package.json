@@ -7,11 +7,6 @@
     "url": "git+https://github.com/HenryEcker/SE-TS-UserScript-Utilities.git"
   },
   "main": "index.ts",
-  "files": [
-    "Formatters/**",
-    "Utilities/**",
-    "Moderators-Testing/**"
-  ],
   "type": "module",
   "author": "Henry Ecker",
   "bugs": {
