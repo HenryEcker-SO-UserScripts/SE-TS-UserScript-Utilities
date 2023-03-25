@@ -20,9 +20,9 @@
   "homepage": "https://github.com/HenryEcker/SE-TS-UserScript-Utilities",
   "scripts": {
     "lint": "eslint .",
-    "bump-patch": "npm version patch",
-    "bump-minor": "npm version minor",
-    "bump-major": "npm version major"
+    "bump-patch": "npm run lint && npm version patch",
+    "bump-minor": "npm run lint && npm version minor",
+    "bump-major": "npm run lint && npm version major"
   },
   "devDependencies": {
     "@hotwired/stimulus": "^3.2.1",
