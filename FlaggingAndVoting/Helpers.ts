@@ -1,7 +1,7 @@
 import {type IdType} from '../Utilities/Types';
 import {fetchPostFormData, fetchPostFormDataBodyJsonResponse} from '../Utilities/General';
 
-interface FlagResponse {
+export interface FlagResponse {
     FlagType: number;
     Message: string;
     Outcome: number;
@@ -9,7 +9,7 @@ interface FlagResponse {
     Success: boolean;
 }
 
-type PostFlagType =
+export type PostFlagType =
     'PostSpam'
     | 'PostOffensive'
     | 'PlagiarizedContent'

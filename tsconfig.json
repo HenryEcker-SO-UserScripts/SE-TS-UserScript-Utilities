@@ -12,12 +12,15 @@
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
-    "isolatedModules": true,
     "removeComments": false,
     "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "Node",
+    "module": "CommonJS",
     "downlevelIteration": true,
+    "sourceMap": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "outDir": "cjs",
+    "esModuleInterop": true,
     "types": [
       "jquery",
       "tampermonkey",
@@ -26,5 +29,9 @@
   },
   "include": [
     "./**/*"
+  ],
+  "exclude": [
+    "./node_modules/**/*",
+    "./cjs/**/*"
   ]
 }
