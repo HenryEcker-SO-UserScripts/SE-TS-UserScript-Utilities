@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.assertValidAnnotationTextLength = exports.annotationTextLengthBounds = exports.assertValidCommentTextLength = exports.commentTextLengthBounds = exports.assertValidPlagiarismFlagTextLengths = exports.plagiarismFlagLengthBounds = exports.assertValidModFlagTextLength = exports.modFlagTextLengthBounds = exports.isInValidationBounds = void 0;
+exports.assertValidDeleteUserReasonDetailTextLength = exports.deleteUserReasonDetailBounds = exports.assertValidAnnotationTextLength = exports.annotationTextLengthBounds = exports.assertValidCommentTextLength = exports.commentTextLengthBounds = exports.assertValidPlagiarismFlagTextLengths = exports.plagiarismFlagLengthBounds = exports.assertValidModFlagTextLength = exports.modFlagTextLengthBounds = exports.isInValidationBounds = void 0;
 function isInValidationBounds(textLength, bounds) {
     const min = bounds.min ?? 0;
     if (bounds.max === undefined) {
@@ -47,4 +47,12 @@ function assertValidAnnotationTextLength(annotationLength) {
     return true;
 }
 exports.assertValidAnnotationTextLength = assertValidAnnotationTextLength;
+exports.deleteUserReasonDetailBounds = { min: 15, max: 600 };
+function assertValidDeleteUserReasonDetailTextLength(deleteReasonDetailLength) {
+    if (!isInValidationBounds(deleteReasonDetailLength, exports.deleteUserReasonDetailBounds)) {
+        throw new Error(`Delete user reason detail text must be between ${exports.deleteUserReasonDetailBounds.min} and ${exports.deleteUserReasonDetailBounds.max} characters.`);
+    }
+    return true;
+}
+exports.assertValidDeleteUserReasonDetailTextLength = assertValidDeleteUserReasonDetailTextLength;
 //# sourceMappingURL=TextLengthValidators.js.map
