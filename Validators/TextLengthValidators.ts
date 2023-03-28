@@ -48,3 +48,12 @@ export function assertValidAnnotationTextLength(annotationLength: number): boole
     }
     return true;
 }
+
+export const deleteUserReasonDetailBounds = {min: 15, max: 600};
+
+export function assertValidDeleteUserReasonDetailTextLength(deleteReasonDetailLength: number): boolean {
+    if (!isInValidationBounds(deleteReasonDetailLength, deleteUserReasonDetailBounds)) {
+        throw new Error(`Delete user reason detail text must be between ${deleteUserReasonDetailBounds.min} and ${deleteUserReasonDetailBounds.max} characters.`);
+    }
+    return true;
+}

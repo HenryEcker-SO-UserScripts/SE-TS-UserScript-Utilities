@@ -27,3 +27,8 @@ export declare const annotationTextLengthBounds: {
     max: number;
 };
 export declare function assertValidAnnotationTextLength(annotationLength: number): boolean;
+export declare const deleteUserReasonDetailBounds: {
+    min: number;
+    max: number;
+};
+export declare function assertValidDeleteUserReasonDetailTextLength(deleteReasonDetailLength: number): boolean;
