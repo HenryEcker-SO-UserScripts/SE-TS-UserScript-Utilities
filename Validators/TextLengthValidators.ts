@@ -39,3 +39,12 @@ export function assertValidCommentTextLength(commentLength: number): boolean {
     }
     return true;
 }
+
+export const annotationTextLengthBounds = {min: 10, max: 300};
+
+export function assertValidAnnotationTextLength(annotationLength: number): boolean {
+    if (!isInValidationBounds(annotationLength, annotationTextLengthBounds)) {
+        throw new Error(`Annotation text must be between ${annotationTextLengthBounds.min} and ${annotationTextLengthBounds.max} characters.`);
+    }
+    return true;
+}

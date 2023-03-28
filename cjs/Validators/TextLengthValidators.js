@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.assertValidCommentTextLength = exports.commentTextLengthBounds = exports.assertValidPlagiarismFlagTextLengths = exports.plagiarismFlagLengthBounds = exports.assertValidModFlagTextLength = exports.modFlagTextLengthBounds = exports.isInValidationBounds = void 0;
+exports.assertValidAnnotationTextLength = exports.annotationTextLengthBounds = exports.assertValidCommentTextLength = exports.commentTextLengthBounds = exports.assertValidPlagiarismFlagTextLengths = exports.plagiarismFlagLengthBounds = exports.assertValidModFlagTextLength = exports.modFlagTextLengthBounds = exports.isInValidationBounds = void 0;
 function isInValidationBounds(textLength, bounds) {
     const min = bounds.min ?? 0;
     if (bounds.max === undefined) {
@@ -39,4 +39,12 @@ function assertValidCommentTextLength(commentLength) {
     return true;
 }
 exports.assertValidCommentTextLength = assertValidCommentTextLength;
+exports.annotationTextLengthBounds = { min: 10, max: 300 };
+function assertValidAnnotationTextLength(annotationLength) {
+    if (!isInValidationBounds(annotationLength, exports.annotationTextLengthBounds)) {
+        throw new Error(`Annotation text must be between ${exports.annotationTextLengthBounds.min} and ${exports.annotationTextLengthBounds.max} characters.`);
+    }
+    return true;
+}
+exports.assertValidAnnotationTextLength = assertValidAnnotationTextLength;
 //# sourceMappingURL=TextLengthValidators.js.map

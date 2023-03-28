@@ -22,3 +22,8 @@ export declare const commentTextLengthBounds: {
     max: number;
 };
 export declare function assertValidCommentTextLength(commentLength: number): boolean;
+export declare const annotationTextLengthBounds: {
+    min: number;
+    max: number;
+};
+export declare function assertValidAnnotationTextLength(annotationLength: number): boolean;
