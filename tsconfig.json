@@ -15,16 +15,15 @@
     "removeComments": false,
     "target": "esnext",
     "module": "CommonJS",
-    "downlevelIteration": true,
     "sourceMap": true,
     "declaration": true,
     "skipLibCheck": true,
     "outDir": "cjs",
-    "esModuleInterop": true,
     "types": [
       "jquery",
       "tampermonkey",
-      "@userscripters/stackexchange-global-types"
+      "@userscripters/stackexchange-global-types",
+      "format-unicorn"
     ]
   },
   "include": [
