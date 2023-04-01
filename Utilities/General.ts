@@ -2,7 +2,7 @@ export function runVoidOnce(fn: (...args: unknown[]) => void) {
     let hasRun = false;
     return function (...args: unknown[]) {
         if (hasRun === false) {
-            Reflect.apply(fn, this, args);
+            Reflect.apply(fn, this as unknown, args);
             hasRun = true;
         }
     };
