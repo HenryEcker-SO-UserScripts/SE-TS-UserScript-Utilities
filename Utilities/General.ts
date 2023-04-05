@@ -33,7 +33,7 @@ export function ajaxPostWithDataStatusOnly(endPoint: string, data: Record<string
             type: 'POST',
             url: endPoint,
             data: data,
-            success: (data, textStatus, xhr) => {
+            success: (_0, textStatus, xhr) => {
                 resolve({
                     status: xhr.status,
                     statusText: textStatus
