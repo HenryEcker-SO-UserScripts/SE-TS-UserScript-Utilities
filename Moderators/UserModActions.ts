@@ -1,24 +1,22 @@
-import {fetchPostFormData} from '../Utilities/General';
 import type {IdType} from '../Utilities/Types';
+import {ajaxPostWithData, ajaxPostWithDataStatusOnly} from '../Utilities/General';
 
 export function getUserPii(userId: IdType): Promise<{
     email: string;
     name: string;
     ip: string;
 }> {
-    return fetchPostFormData(
+    return ajaxPostWithData(
         '/admin/all-pii',
         {id: userId, fkey: StackExchange.options.user.fkey}
-    )
-        .then(res => res.text())
-        .then(resText => {
-            const html = $(resText);
-            return {
-                email: (html[1].children[1] as HTMLElement).innerText.trim(),
-                name: (html[1].children[3] as HTMLElement).innerText.trim(),
-                ip: (html[3].children[1] as HTMLElement).innerText.trim()
-            };
-        });
+    ).then((resText: string) => {
+        const html = $(resText);
+        return {
+            email: (html[1].children[1] as HTMLElement).innerText.trim(),
+            name: (html[1].children[3] as HTMLElement).innerText.trim(),
+            ip: (html[3].children[1] as HTMLElement).innerText.trim()
+        };
+    });
 }
 
 export type DeleteReason = (
@@ -27,7 +25,7 @@ export type DeleteReason = (
     );
 
 export function deleteUser(userId: IdType, deleteReason: DeleteReason, deleteReasonDetails: string) {
-    return fetchPostFormData(
+    return ajaxPostWithDataStatusOnly(
         `/admin/users/${userId}/delete`,
         {
             fkey: StackExchange.options.user.fkey,
@@ -38,7 +36,7 @@ export function deleteUser(userId: IdType, deleteReason: DeleteReason, deleteRea
 }
 
 export function annotateUser(userId: IdType, annotationDetails: string) {
-    return fetchPostFormData(
+    return ajaxPostWithDataStatusOnly(
         `/admin/users/${userId}/annotate`,
         {
             fkey: StackExchange.options.user.fkey,

@@ -1,10 +1,10 @@
 import {type IdType} from '../Utilities/Types';
-import {fetchPostFormDataBodyJsonResponse} from '../Utilities/General';
-import {flagPost} from './Helpers';
+import {flagPost, type FlagResponse} from './Helpers';
+import {ajaxPostWithData} from '../Utilities/General';
 
 
 export function reopenQuestion(postId: IdType) {
-    return fetchPostFormDataBodyJsonResponse(
+    return ajaxPostWithData<FlagResponse>(
         `/flags/questions/${postId}/reopen/add`,
         {
             fkey: StackExchange.options.user.fkey

@@ -1,24 +1,13 @@
 import {type IdType} from '../Utilities/Types';
+import {ajaxPostWithData} from '../Utilities/General';
 
 export interface PostDeleteAsPlagiarismResponse {
     success: boolean;
     message: string;
 }
 
-export function deleteAsPlagiarism(postId: IdType): Promise<PostDeleteAsPlagiarismResponse> {
-    return new Promise((resolve, reject) => {
-        void $.ajax({
-            type: 'POST',
-            url: `/admin/posts/${postId}/delete-as-plagiarism`,
-            data: {
-                fkey: StackExchange.options.user.fkey
-            },
-            success: (json) => {
-                resolve(json);
-            },
-            error: (res) => {
-                reject(res);
-            }
-        });
+export function deleteAsPlagiarism(postId: IdType) {
+    return ajaxPostWithData<PostDeleteAsPlagiarismResponse>(`/admin/posts/${postId}/delete-as-plagiarism`, {
+        fkey: StackExchange.options.user.fkey
     });
 }

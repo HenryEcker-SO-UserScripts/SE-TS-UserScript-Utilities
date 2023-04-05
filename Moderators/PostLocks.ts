@@ -1,5 +1,5 @@
-import {fetchPostFormDataBodyJsonResponse} from '../Utilities/General';
 import type {IdType} from '../Utilities/Types';
+import {ajaxPostWithData} from '../Utilities/General';
 
 
 type LockTypeId = (
@@ -9,9 +9,15 @@ type LockTypeId = (
     23 | // Wiki Lock
     28); // Obsolete Lock
 
+
+export interface LockPostResponse {
+    success: boolean;
+    affectedPostIds: number[];
+}
+
 export function lockPost(postId: IdType, lockId: LockTypeId, durationInHours = 24) {
     // duration -1 can be used to permanently lock the post
-    return fetchPostFormDataBodyJsonResponse(
+    return ajaxPostWithData<LockPostResponse>(
         `/admin/posts/${postId}/lock`,
         {
             'mod-actions': 'lock',
@@ -23,7 +29,7 @@ export function lockPost(postId: IdType, lockId: LockTypeId, durationInHours = 2
 }
 
 export function unlockPost(postId: IdType) {
-    return fetchPostFormDataBodyJsonResponse(
+    return ajaxPostWithData<LockPostResponse>(
         `/admin/posts/${postId}/unlock`,
         {
             'mod-actions': 'unlock',

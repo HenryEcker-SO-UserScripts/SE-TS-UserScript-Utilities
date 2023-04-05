@@ -1,5 +1,5 @@
 import {type IdType} from '../Utilities/Types';
-import {fetchPostFormData, fetchPostFormDataBodyJsonResponse} from '../Utilities/General';
+import {ajaxPostWithData} from '../Utilities/General';
 
 export interface FlagResponse {
     FlagType: number;
@@ -30,15 +30,28 @@ export function flagPost(flagType: PostFlagType, postId: IdType, otherText?: und
         data['customData'] = JSON.stringify(customData);
     }
 
-    return fetchPostFormDataBodyJsonResponse<FlagResponse>(
+    return ajaxPostWithData<FlagResponse>(
         `/flags/posts/${postId}/add/${flagType}`,
         data
     );
 }
 
+export interface VoteResponse {
+    Success: boolean;
+    Reason: number;
+    Warning: boolean;
+    NewScore: number;
+    Message: string;
+    CanOverrideMessageWithResearchPrompt: boolean;
+    Refresh: boolean;
+    Transient: boolean;
+    Info: boolean;
+    HasAcceptedByModRights: boolean;
+}
+
 
 export function castPostsVote(postId: IdType, voteType: 10 | 11) {
-    return fetchPostFormData(
+    return ajaxPostWithData<VoteResponse>(
         `/posts/${postId}/vote/${voteType}`,
         {
             fkey: StackExchange.options.user.fkey
