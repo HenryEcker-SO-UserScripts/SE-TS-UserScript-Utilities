@@ -1,3 +1,7 @@
 import { type IdType } from '../Utilities/Types';
-export declare function sendChatMessage(roomId: IdType, messageText: string, chatFkey: string): Promise<Response>;
-export declare function deleteChatMessage(messageId: IdType, chatFkey: string): Promise<Response>;
+export interface SendChatMessageResponse {
+    id: number;
+    time: number;
+}
+export declare function sendChatMessage(roomId: IdType, messageText: string, chatFkey: string): Promise<SendChatMessageResponse>;
+export declare function deleteChatMessage(messageId: string | number, chatFkey: string): Promise<"ok" | "This message has already been deleted.">;

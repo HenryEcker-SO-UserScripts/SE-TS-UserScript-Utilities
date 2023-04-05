@@ -8,20 +8,40 @@ export function runVoidOnce(fn: (...args: unknown[]) => void) {
     };
 }
 
-export function getFormDataFromObject(obj: Record<string, unknown>) {
-    return Object.entries(obj).reduce((acc, [key, value]) => {
-        acc.set(key, value as string);
-        return acc;
-    }, new FormData());
-}
-
-export function fetchPostFormData(endPoint: string, data: Record<string, unknown>) {
-    return fetch(endPoint, {
-        method: 'POST',
-        body: getFormDataFromObject(data)
+export function ajaxPostWithData<T>(endPoint: string, data: Record<string, unknown>): Promise<T> {
+    return new Promise((resolve, reject) => {
+        void $.ajax({
+            type: 'POST',
+            url: endPoint,
+            data: data,
+            success: (json) => {
+                resolve(json);
+            },
+            error: (res) => {
+                reject(res);
+            }
+        });
     });
 }
 
-export function fetchPostFormDataBodyJsonResponse<T>(endPoint: string, data: Record<string, unknown>): Promise<T> {
-    return fetchPostFormData(endPoint, data).then(res => res.json());
+export function ajaxPostWithDataStatusOnly(endPoint: string, data: Record<string, unknown>): Promise<{
+    status: number;
+    statusText: string;
+}> {
+    return new Promise((resolve, reject) => {
+        void $.ajax({
+            type: 'POST',
+            url: endPoint,
+            data: data,
+            success: (data, textStatus, xhr) => {
+                resolve({
+                    status: xhr.status,
+                    statusText: textStatus
+                });
+            },
+            error: (res) => {
+                reject(res);
+            }
+        });
+    });
 }

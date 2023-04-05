@@ -1,4 +1,4 @@
-import {fetchPostFormDataBodyJsonResponse} from '../Utilities/General';
+import {ajaxPostWithData} from '../Utilities/General';
 import type {IdType} from '../Utilities/Types';
 
 
@@ -8,7 +8,7 @@ interface EditTagResponse {
 }
 
 export function editTags(postId: IdType, tags: string, reviewTaskId?: IdType) {
-    return fetchPostFormDataBodyJsonResponse<EditTagResponse>(
+    return ajaxPostWithData<EditTagResponse>(
         `/posts/${postId}/edit-tags`,
         {
             tagnames: tags,
@@ -36,7 +36,7 @@ export function editPost(
     isCurrent = true,
     author?: string
 ) {
-    return fetchPostFormDataBodyJsonResponse<PostEditResponse>(
+    return ajaxPostWithData<PostEditResponse>(
         `/posts/${postId}/edit-submit/${revisionGuid}`,
         {
             'is-current': isCurrent,
@@ -57,7 +57,7 @@ interface PostEditorHeartbeatResponse {
 }
 
 export function postEditorHeartbeat(postId: IdType, clientRevisionGuid: string) {
-    return fetchPostFormDataBodyJsonResponse<PostEditorHeartbeatResponse>(
+    return ajaxPostWithData<PostEditorHeartbeatResponse>(
         `/posts/${postId}/editor-heartbeat/edit`,
         {
             fkey: StackExchange.options.user.fkey,
@@ -74,7 +74,7 @@ interface ValidateResponse {
 }
 
 export function validatePostBody(body: string, oldBody: string, isQuestion: boolean, isSuggestedEdit = false) {
-    return fetchPostFormDataBodyJsonResponse<ValidateResponse>(
+    return ajaxPostWithData<ValidateResponse>(
         '/posts/validate-body',
         {
             body: body,
@@ -87,7 +87,7 @@ export function validatePostBody(body: string, oldBody: string, isQuestion: bool
 }
 
 export function validatePostTitle(title: string) {
-    return fetchPostFormDataBodyJsonResponse<ValidateResponse>(
+    return ajaxPostWithData<ValidateResponse>(
         '/posts/validate-title',
         {
             title: title,
@@ -97,7 +97,7 @@ export function validatePostTitle(title: string) {
 }
 
 export function validatePostTags(tags: string, oldTags: string, postTypeId = 1) {
-    return fetchPostFormDataBodyJsonResponse<ValidateResponse>(
+    return ajaxPostWithData<ValidateResponse>(
         '/posts/validate-title',
         {
             tags: tags,
@@ -126,7 +126,7 @@ export function isSuggestedEditQueueFull(postId: IdType): Promise<boolean> {
 }
 
 export function discardQuestionDraft() {
-    return fetchPostFormDataBodyJsonResponse<{ success: boolean; }>(
+    return ajaxPostWithData<{ success: boolean; }>(
         '/post/discard-draft',
         {
             fkey: StackExchange.options.user.fkey,

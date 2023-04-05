@@ -4,6 +4,10 @@ type LockTypeId = (20 | // Content Dispute
 22 | // Historical Lock
 23 | // Wiki Lock
 28);
-export declare function lockPost(postId: IdType, lockId: LockTypeId, durationInHours?: number): Promise<unknown>;
-export declare function unlockPost(postId: IdType): Promise<unknown>;
+export interface LockPostResponse {
+    success: boolean;
+    affectedPostIds: number[];
+}
+export declare function lockPost(postId: IdType, lockId: LockTypeId, durationInHours?: number): Promise<LockPostResponse>;
+export declare function unlockPost(postId: IdType): Promise<LockPostResponse>;
 export {};

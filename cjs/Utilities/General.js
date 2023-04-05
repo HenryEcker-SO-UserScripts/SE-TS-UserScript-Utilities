@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.fetchPostFormDataBodyJsonResponse = exports.fetchPostFormData = exports.getFormDataFromObject = exports.runVoidOnce = void 0;
+exports.ajaxPostWithDataStatusOnly = exports.ajaxPostWithData = exports.runVoidOnce = void 0;
 function runVoidOnce(fn) {
     let hasRun = false;
     return function (...args) {
@@ -11,22 +11,39 @@ function runVoidOnce(fn) {
     };
 }
 exports.runVoidOnce = runVoidOnce;
-function getFormDataFromObject(obj) {
-    return Object.entries(obj).reduce((acc, [key, value]) => {
-        acc.set(key, value);
-        return acc;
-    }, new FormData());
-}
-exports.getFormDataFromObject = getFormDataFromObject;
-function fetchPostFormData(endPoint, data) {
-    return fetch(endPoint, {
-        method: 'POST',
-        body: getFormDataFromObject(data)
+function ajaxPostWithData(endPoint, data) {
+    return new Promise((resolve, reject) => {
+        void $.ajax({
+            type: 'POST',
+            url: endPoint,
+            data: data,
+            success: (json) => {
+                resolve(json);
+            },
+            error: (res) => {
+                reject(res);
+            }
+        });
     });
 }
-exports.fetchPostFormData = fetchPostFormData;
-function fetchPostFormDataBodyJsonResponse(endPoint, data) {
-    return fetchPostFormData(endPoint, data).then(res => res.json());
+exports.ajaxPostWithData = ajaxPostWithData;
+function ajaxPostWithDataStatusOnly(endPoint, data) {
+    return new Promise((resolve, reject) => {
+        void $.ajax({
+            type: 'POST',
+            url: endPoint,
+            data: data,
+            success: (data, textStatus, xhr) => {
+                resolve({
+                    status: xhr.status,
+                    statusText: textStatus
+                });
+            },
+            error: (res) => {
+                reject(res);
+            }
+        });
+    });
 }
-exports.fetchPostFormDataBodyJsonResponse = fetchPostFormDataBodyJsonResponse;
+exports.ajaxPostWithDataStatusOnly = ajaxPostWithDataStatusOnly;
 //# sourceMappingURL=General.js.map

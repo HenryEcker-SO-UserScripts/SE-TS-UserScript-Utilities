@@ -13,11 +13,11 @@ function flagPost(flagType, postId, otherText, overrideWarning, customData) {
     if (customData !== undefined) {
         data['customData'] = JSON.stringify(customData);
     }
-    return (0, General_1.fetchPostFormDataBodyJsonResponse)(`/flags/posts/${postId}/add/${flagType}`, data);
+    return (0, General_1.ajaxPostWithData)(`/flags/posts/${postId}/add/${flagType}`, data);
 }
 exports.flagPost = flagPost;
 function castPostsVote(postId, voteType) {
-    return (0, General_1.fetchPostFormData)(`/posts/${postId}/vote/${voteType}`, {
+    return (0, General_1.ajaxPostWithData)(`/posts/${postId}/vote/${voteType}`, {
         fkey: StackExchange.options.user.fkey
     });
 }
