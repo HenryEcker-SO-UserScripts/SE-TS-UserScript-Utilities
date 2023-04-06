@@ -8,40 +8,34 @@ export function runVoidOnce(fn: (...args: unknown[]) => void) {
     };
 }
 
-export function ajaxPostWithData<T>(endPoint: string, data: Record<string, unknown>): Promise<T> {
-    return new Promise((resolve, reject) => {
-        void $.ajax({
-            type: 'POST',
-            url: endPoint,
-            data: data,
-            success: (json) => {
-                resolve(json);
-            },
-            error: (res) => {
-                reject(res);
-            }
-        });
-    });
-}
-
-export function ajaxPostWithDataStatusOnly(endPoint: string, data: Record<string, unknown>): Promise<{
+export interface StatusOnlyResponse {
     status: number;
     statusText: string;
-}> {
+}
+
+/**
+ * if shouldReturnData is false we just return the status and status text,
+ * otherwise we need to specify the type of information being returned (T)
+ */
+export function ajaxPostWithData(endPoint: string, data: Record<string, unknown>, shouldReturnData?: false): Promise<StatusOnlyResponse>;
+export function ajaxPostWithData<T>(endPoint: string, data: Record<string, unknown>, shouldReturnData?: true): Promise<T>;
+export function ajaxPostWithData<T>(endPoint: string, data: Record<string, unknown>, shouldReturnData = true): Promise<T | StatusOnlyResponse> {
     return new Promise((resolve, reject) => {
         void $.ajax({
             type: 'POST',
             url: endPoint,
             data: data,
-            success: (_0, textStatus, xhr) => {
-                resolve({
-                    status: xhr.status,
-                    statusText: textStatus
-                });
-            },
-            error: (res) => {
-                reject(res);
-            }
+        }).done((resData: T, textStatus, xhr) => {
+            resolve(
+                shouldReturnData ?
+                    resData :
+                    {
+                        status: xhr.status,
+                        statusText: textStatus
+                    }
+            );
+        }).fail((res) => {
+            reject(res.responseText ?? 'An unknown error occurred');
         });
     });
 }

@@ -1,15 +1,15 @@
 import type {IdType} from '../Utilities/Types';
-import {ajaxPostWithData, ajaxPostWithDataStatusOnly} from '../Utilities/General';
+import {ajaxPostWithData} from '../Utilities/General';
 
 export function getUserPii(userId: IdType): Promise<{
     email: string;
     name: string;
     ip: string;
 }> {
-    return ajaxPostWithData(
+    return ajaxPostWithData<string>(
         '/admin/all-pii',
         {id: userId, fkey: StackExchange.options.user.fkey}
-    ).then((resText: string) => {
+    ).then(resText => {
         const html = $(resText);
         return {
             email: (html[1].children[1] as HTMLElement).innerText.trim(),
@@ -25,22 +25,24 @@ export type DeleteReason = (
     );
 
 export function deleteUser(userId: IdType, deleteReason: DeleteReason, deleteReasonDetails: string) {
-    return ajaxPostWithDataStatusOnly(
+    return ajaxPostWithData(
         `/admin/users/${userId}/delete`,
         {
             fkey: StackExchange.options.user.fkey,
             deleteReason: deleteReason,
             deleteReasonDetails: deleteReasonDetails
-        }
+        },
+        false
     );
 }
 
 export function annotateUser(userId: IdType, annotationDetails: string) {
-    return ajaxPostWithDataStatusOnly(
+    return ajaxPostWithData(
         `/admin/users/${userId}/annotate`,
         {
             fkey: StackExchange.options.user.fkey,
             annotation: annotationDetails
-        }
+        },
+        false
     );
 }

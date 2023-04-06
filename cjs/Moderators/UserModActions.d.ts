@@ -5,11 +5,5 @@ export declare function getUserPii(userId: IdType): Promise<{
     ip: string;
 }>;
 export type DeleteReason = ('This user was created to circumvent system or moderator imposed restrictions and continues to contribute poorly' | 'This user is no longer welcome to participate on the site');
-export declare function deleteUser(userId: IdType, deleteReason: DeleteReason, deleteReasonDetails: string): Promise<{
-    status: number;
-    statusText: string;
-}>;
-export declare function annotateUser(userId: IdType, annotationDetails: string): Promise<{
-    status: number;
-    statusText: string;
-}>;
+export declare function deleteUser(userId: IdType, deleteReason: DeleteReason, deleteReasonDetails: string): Promise<import("../Utilities/General").StatusOnlyResponse>;
+export declare function annotateUser(userId: IdType, annotationDetails: string): Promise<import("../Utilities/General").StatusOnlyResponse>;
