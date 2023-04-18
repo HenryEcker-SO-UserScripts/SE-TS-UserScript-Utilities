@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteChatMessage = exports.sendChatMessage = void 0;
+exports.deleteChatMessage = exports.editChatMessage = exports.sendChatMessage = void 0;
 const General_1 = require("../Utilities/General");
 function sendChatMessage(roomId, messageText, chatFkey) {
     // Will respond with a 200 if successful with JSON {id: number; time: number;}
@@ -11,6 +11,13 @@ function sendChatMessage(roomId, messageText, chatFkey) {
     });
 }
 exports.sendChatMessage = sendChatMessage;
+function editChatMessage(messageId, updatedText, chatFkey) {
+    return (0, General_1.ajaxPostWithData)(`/messages/${messageId}`, {
+        'text': updatedText,
+        'fkey': chatFkey
+    });
+}
+exports.editChatMessage = editChatMessage;
 function deleteChatMessage(messageId, chatFkey) {
     // Will respond with a 200 if successful and text "ok"
     // Will respond with a 200 if already deleted text "This message has already been deleted."
