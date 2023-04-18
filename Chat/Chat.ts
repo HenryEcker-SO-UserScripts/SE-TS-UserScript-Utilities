@@ -16,6 +16,13 @@ export function sendChatMessage(roomId: IdType, messageText: string, chatFkey: s
     });
 }
 
+export function editChatMessage(messageId: string | number, updatedText: string, chatFkey: string) {
+    return ajaxPostWithData<'ok'>(`/messages/${messageId}`, {
+        'text': updatedText,
+        'fkey': chatFkey
+    });
+}
+
 export function deleteChatMessage(messageId: string | number, chatFkey: string) {
     // Will respond with a 200 if successful and text "ok"
     // Will respond with a 200 if already deleted text "This message has already been deleted."
