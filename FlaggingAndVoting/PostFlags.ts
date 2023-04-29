@@ -1,16 +1,6 @@
 import {type IdType} from '../Utilities/Types';
-import {flagPost, type FlagResponse} from './Helpers';
-import {ajaxPostWithData} from '../Utilities/General';
+import {flagPost} from './Helpers';
 
-
-export function reopenQuestion(postId: IdType) {
-    return ajaxPostWithData<FlagResponse>(
-        `/flags/questions/${postId}/reopen/add`,
-        {
-            fkey: StackExchange.options.user.fkey
-        }
-    );
-}
 
 export function flagSpam(postId: IdType) {
     return flagPost('PostSpam', postId, null, true);
