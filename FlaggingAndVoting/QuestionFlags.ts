@@ -20,10 +20,12 @@ interface CloseAsDuplicateConfig extends Record<string, unknown> {
 }
 
 export function closeQuestionAsDuplicate(postId: IdType, dupeTargetId: IdType) {
-    const flagConfig: CloseAsDuplicateConfig = {
-        fkey: StackExchange.options.user.fkey,
-        closeReasonId: 'Duplicate',
-        duplicateOfQuestionId: dupeTargetId
-    };
-    return ajaxPostWithData<FlagResponse>(`/flags/questions/${postId}/close/add`, flagConfig);
+    return ajaxPostWithData<FlagResponse>(
+        `/flags/questions/${postId}/close/add`,
+        {
+            fkey: StackExchange.options.user.fkey,
+            closeReasonId: 'Duplicate',
+            duplicateOfQuestionId: dupeTargetId
+        } satisfies CloseAsDuplicateConfig
+    );
 }

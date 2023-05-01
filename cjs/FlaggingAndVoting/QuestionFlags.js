@@ -9,12 +9,11 @@ function reopenQuestion(postId) {
 }
 exports.reopenQuestion = reopenQuestion;
 function closeQuestionAsDuplicate(postId, dupeTargetId) {
-    const flagConfig = {
+    return (0, General_1.ajaxPostWithData)(`/flags/questions/${postId}/close/add`, {
         fkey: StackExchange.options.user.fkey,
         closeReasonId: 'Duplicate',
         duplicateOfQuestionId: dupeTargetId
-    };
-    return (0, General_1.ajaxPostWithData)(`/flags/questions/${postId}/close/add`, flagConfig);
+    });
 }
 exports.closeQuestionAsDuplicate = closeQuestionAsDuplicate;
 //# sourceMappingURL=QuestionFlags.js.map
