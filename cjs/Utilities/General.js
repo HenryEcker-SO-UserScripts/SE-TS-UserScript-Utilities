@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ajaxPostWithData = exports.runVoidOnce = void 0;
+exports.ajaxGet = exports.ajaxPostWithData = exports.runVoidOnce = void 0;
 function runVoidOnce(fn) {
     let hasRun = false;
     return function (...args) {
@@ -30,4 +30,17 @@ function ajaxPostWithData(endPoint, data, shouldReturnData = true) {
     });
 }
 exports.ajaxPostWithData = ajaxPostWithData;
+function ajaxGet(endPoint) {
+    return new Promise((resolve, reject) => {
+        void $.ajax({
+            type: 'GET',
+            url: endPoint
+        }).done((resData) => {
+            resolve(resData);
+        }).fail((res) => {
+            reject(res.responseText ?? 'An unknown error occurred');
+        });
+    });
+}
+exports.ajaxGet = ajaxGet;
 //# sourceMappingURL=General.js.map

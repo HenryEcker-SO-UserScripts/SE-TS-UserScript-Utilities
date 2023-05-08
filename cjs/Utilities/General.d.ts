@@ -9,3 +9,4 @@ export interface StatusOnlyResponse {
  */
 export declare function ajaxPostWithData(endPoint: string, data: Record<string, unknown>, shouldReturnData?: false): Promise<StatusOnlyResponse>;
 export declare function ajaxPostWithData<T>(endPoint: string, data: Record<string, unknown>, shouldReturnData?: true): Promise<T>;
+export declare function ajaxGet<T>(endPoint: string): Promise<T>;

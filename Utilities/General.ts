@@ -39,3 +39,16 @@ export function ajaxPostWithData<T>(endPoint: string, data: Record<string, unkno
         });
     });
 }
+
+export function ajaxGet<T>(endPoint: string): Promise<T> {
+    return new Promise((resolve, reject) => {
+        void $.ajax({
+            type: 'GET',
+            url: endPoint
+        }).done((resData: T) => {
+            resolve(resData);
+        }).fail((res) => {
+            reject(res.responseText ?? 'An unknown error occurred');
+        });
+    });
+}
