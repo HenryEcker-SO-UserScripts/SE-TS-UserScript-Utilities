@@ -29,6 +29,6 @@
     "@userscripters/stackexchange-global-types": "^2.7.0",
     "eslint": "^8.41.0",
     "jquery": "^3.7.0",
-    "typescript": "^5.0.4"
+    "typescript": "^5.1.6"
   }
 }
