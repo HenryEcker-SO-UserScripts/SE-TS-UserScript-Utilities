@@ -20,7 +20,7 @@
     "bump-major": "npm run build && npm version major"
   },
   "devDependencies": {
-    "@hotwired/stimulus": "^3.2.1",
+    "@hotwired/stimulus": "^3.2.2",
     "@types/format-unicorn": "^1.1.2",
     "@types/jquery": "^3.5.16",
     "@types/tampermonkey": "^4.0.10",
