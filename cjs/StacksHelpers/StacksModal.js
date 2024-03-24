@@ -12,8 +12,8 @@ function removeModalFromDOM(modalId) {
     }
 }
 exports.removeModalFromDOM = removeModalFromDOM;
-async function disableSubmitButtonAndToastErrors(jSubmitButton, handleActions) {
-    jSubmitButton
+async function disableSubmitButtonAndToastErrors($jSubmitButton, handleActions) {
+    $jSubmitButton
         .prop('disabled', true)
         .addClass('is-loading');
     try {
@@ -23,7 +23,7 @@ async function disableSubmitButtonAndToastErrors(jSubmitButton, handleActions) {
         StackExchange.helpers.showToast((0, ErrorHandling_1.getMessageFromCaughtElement)(error), { type: 'danger' });
     }
     finally {
-        jSubmitButton
+        $jSubmitButton
             .prop('disabled', false)
             .removeClass('is-loading');
     }

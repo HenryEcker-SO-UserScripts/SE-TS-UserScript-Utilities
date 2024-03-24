@@ -10,4 +10,4 @@ declare global {
         charCounter: (options: CharCounterOptions) => JQuery;
     }
 }
-export declare function configureCharCounter(jTextarea: JQuery<HTMLTextAreaElement>, populateText: string, charCounterOptions: CharCounterOptions): void;
+export declare function configureCharCounter($jTextarea: JQuery<HTMLTextAreaElement>, populateText: string, charCounterOptions: CharCounterOptions): void;
