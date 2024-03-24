@@ -11,8 +11,8 @@ export function removeModalFromDOM(modalId: string) {
 }
 
 
-export async function disableSubmitButtonAndToastErrors(jSubmitButton: JQuery, handleActions: () => Promise<void>) {
-    jSubmitButton
+export async function disableSubmitButtonAndToastErrors($jSubmitButton: JQuery, handleActions: () => Promise<void>) {
+    $jSubmitButton
         .prop('disabled', true)
         .addClass('is-loading');
     try {
@@ -20,7 +20,7 @@ export async function disableSubmitButtonAndToastErrors(jSubmitButton: JQuery, h
     } catch (error) {
         StackExchange.helpers.showToast(getMessageFromCaughtElement(error), {type: 'danger'});
     } finally {
-        jSubmitButton
+        $jSubmitButton
             .prop('disabled', false)
             .removeClass('is-loading');
     }

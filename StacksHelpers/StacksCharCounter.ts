@@ -13,14 +13,14 @@ declare global {
 }
 
 export function configureCharCounter(
-    jTextarea: JQuery<HTMLTextAreaElement>,
+    $jTextarea: JQuery<HTMLTextAreaElement>,
     populateText: string,
     charCounterOptions: CharCounterOptions
 ) {
     if (charCounterOptions.target === undefined) {
-        charCounterOptions.target = jTextarea.parent().find('span.text-counter');
+        charCounterOptions.target = $jTextarea.parent().find('span.text-counter');
     }
-    jTextarea
+    $jTextarea
         .val(populateText)
         .charCounter(charCounterOptions)
         .trigger('charCounterUpdate');
